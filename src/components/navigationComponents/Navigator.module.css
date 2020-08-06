@@ -1,0 +1,31 @@
+.AppHeader {
+  background-color: #282c34;
+  min-height: 5vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 15px;
+  color: white;
+  padding: 0px 30px;
+}
+
+.AppHeader ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+}
+
+.AppHeader li {
+  padding: 0px 10px;
+}
+
+.AppHeader a {
+  text-decoration: none;
+  color: white;
+}
+
+.AppHeader a:hover {
+    text-decoration: underline;
+    color: white;
+  }
