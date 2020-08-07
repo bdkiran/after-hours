@@ -1,40 +1,38 @@
-import React, {useState, useEffect} from 'react'
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react'
+import { useHistory } from "react-router-dom";
 
 import { getUserExperiences } from '../../../../utils/apiRequests'
 
 import style from "./ExperienceList.module.css"
 
-export default function ExperienceList({userId}) {
+export default function ExperienceList({ userId }) {
 
     const [experiences, setExperiences] = useState([])
 
     useEffect(() => {
         getUserExperiences(userId).then(result => {
-            if(!result.data){
+            if (!result.data) {
                 return
             }
             setExperiences(result.data)
-        })
-    },[userId]);
+        }).catch(err => console.log(err))
+    }, [userId]);
+
+    const history = useHistory();
+
+    const goToExperienceDetails = (id) => {
+        let path = "/experience/" + id;
+        history.push(path)
+    }
 
     const generateExperienceList = () => {
-        const experienceItems = experiences.map((exp)=>(
-            <div className={style.experienceContainer} key={exp.id}>
+        const experienceItems = experiences.map((exp) => (
+            <div className={style.experienceContainer} key={exp.id}
+             onClick={() => goToExperienceDetails(exp.id)}>
                 <h3>{exp.name}</h3>
                 <h4>Location: {exp.location}</h4>
                 <h4>Time: {exp.time}</h4>
                 <p>Description: {exp.description}</p>
-                <button>
-                    <Link to={{
-                        //this needs to be dynamic
-                        pathname: "/experience/1",
-                        state: { experience: exp }
-                        }}
-                    >
-                    Edit Experience
-                    </Link>
-                </button>
             </div>
         ));
         return (
@@ -47,15 +45,15 @@ export default function ExperienceList({userId}) {
 
     const noExperiences = () => {
         return <div><h3>Create experiences. They will show up here</h3></div>
-    } 
+    }
 
     return (
         <div>
             <h1>Experiences</h1>
             <div className={style.contentContainer}>
-                <div className={style.sideFill}/>
-                {(experiences.length > 0) ? generateExperienceList() : noExperiences() }
-                <div className={style.sideFill}/>
+                <div className={style.sideFill} />
+                {(experiences.length > 0) ? generateExperienceList() : noExperiences()}
+                <div className={style.sideFill} />
             </div>
         </div>
     )

@@ -76,3 +76,28 @@
 .deleteButton:hover {
   border-color: black;
 }
+
+/* View Experience styling components*/
+.expContainer {
+  flex: 6;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  background-color: #f2f2f2;
+}
+
+.photoSection {
+  width: 100%;
+  height: 300px;
+  background-color: aqua;
+}
+
+.titleSection {
+  padding: 0 10px;
+  border-bottom: 1px solid black;
+}
+
+.detailsSection {
+  padding: 0 10px;
+  border-bottom: 1px solid black;
+}

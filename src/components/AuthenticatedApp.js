@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import Home from "./pageComponents/authenticatedPages/Home";
 import CreateExperience from "./pageComponents/authenticatedPages/CreateExperience";
 import EditExperience from "./pageComponents/authenticatedPages/EditExperience";
+import ViewExperience from "./pageComponents/authenticatedPages/ViewExperience";
 import Music from "./pageComponents/authenticatedPages/Music";
 import NoMatch from "./pageComponents/NoMatch";
 
@@ -20,7 +21,8 @@ export default function AuthenticatedApp(props) {
         <Route exact path="/createexperience">
           <CreateExperience user={props.user} />
         </Route>
-        <Route exact path="/experience/:id" component={EditExperience} />
+        <Route exact path="/experience/:id" component={ViewExperience}/>
+        <Route exact path="/experience/edit/:id" component={EditExperience} />
         <Route exact path="/">
           <Home user={props.user} />
         </Route>

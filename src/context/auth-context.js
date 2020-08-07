@@ -3,6 +3,7 @@ import * as auth from '../auth-provider';
 
 const AuthContext = React.createContext();
 
+//Check if the user has a token, attempts to authenticate with token
 async function bootstrapAppData() {
   let user = null
   const token = await auth.getToken()
@@ -24,7 +25,7 @@ function AuthProvider(props) {
       }
       console.log(result)
       setData({user: result})
-    }) 
+    }).catch( err => console.log(err))
   } 
   
   const login = async(loginCreds) => {

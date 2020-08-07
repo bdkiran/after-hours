@@ -12,6 +12,18 @@ async function getUserExperiences(userId) {
   return apiClient(endpoint, config);
 }
 
+async function getExperience(expId) {
+  const token = await getToken()
+  const bearerTokenString = 'Bearer ' + token
+  const endpoint = "experience/" + expId;
+  const config = {
+    method: "GET",
+    headers: { "Content-Type": "application/json", 'Authorization': bearerTokenString },
+  };
+
+  return apiClient(endpoint, config);
+}
+
 async function editExperienceDetails(dataPayload) {
   const token = await getToken()
   const bearerTokenString = 'Bearer ' + token
@@ -63,4 +75,4 @@ async function apiClient(endpoint, config) {
   });
 }
 
-export { getUserExperiences, editExperienceDetails, createExperience, deleteExperience };
+export { getUserExperiences, getExperience, editExperienceDetails, createExperience, deleteExperience };
