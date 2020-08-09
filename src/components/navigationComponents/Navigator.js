@@ -17,6 +17,9 @@ function Navigator({ isAuthenticated }) {
         <li>
           <button onClick={logout}>Logout</button>
         </li>
+        <li>
+          <button><Link to="/user">Profile</Link></button>
+        </li>
         </React.Fragment>
       );
     } else {

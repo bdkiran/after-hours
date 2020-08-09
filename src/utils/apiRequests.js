@@ -1,4 +1,16 @@
-import {getToken} from '../auth-provider';
+import { getToken } from '../auth-provider';
+
+async function getUserDetails(userId) {
+  const token = await getToken()
+  const bearerTokenString = 'Bearer ' + token
+  const endpoint = "user/" + userId;
+  const config = {
+    method: "GET",
+    headers: { "Content-Type": "application/json", 'Authorization': bearerTokenString },
+  };
+
+  return apiClient(endpoint, config);
+}
 
 async function getUserExperiences(userId) {
   const token = await getToken()
@@ -75,4 +87,7 @@ async function apiClient(endpoint, config) {
   });
 }
 
-export { getUserExperiences, getExperience, editExperienceDetails, createExperience, deleteExperience };
+export {
+  getUserDetails, getUserExperiences, getExperience, editExperienceDetails,
+  createExperience, deleteExperience
+};

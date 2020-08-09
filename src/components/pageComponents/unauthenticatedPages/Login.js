@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
 import { useAuth } from "../../../context/auth-context";
+import style from './Login.module.css'
+
 
 export default function Login() {
   const [state, setState] = useState({
@@ -20,12 +22,10 @@ export default function Login() {
   let history = useHistory();
   const { login } = useAuth();
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    //need to handle when this fails
-    //want error to be returned here
+    //If the login request fails, set error to true
     let loginRequstValid = await login(state);
-    //console.log(loginError)
     if (loginRequstValid === false) {
       setState((prevState) => ({
         ...prevState,
@@ -33,13 +33,13 @@ export default function Login() {
       }));
       return;
     }
-    //login and send to home page
+    //log in successful, route to home page
     history.push("/");
   };
 
   const loginError = () => {
     return (
-      <div>
+      <div className={style.loginError}>
         <h3>Invalid Username or Password</h3>
       </div>
     )
@@ -48,33 +48,37 @@ export default function Login() {
   return (
     <main>
       <h1>Login</h1>
-      {
-        state.authError ? loginError() : <div />
-      }
-      <div className="formContainer">
-        <form onSubmit={handleSubmit}>
-          <label>Username</label>
-          <input
-            type="text"
-            name="username"
-            value={state.username}
-            onChange={handleChange}
-          />
-          <br />
+      <div className={style.loginContainer}>
+        <div className={style.sideFill}/>
+        <div className={style.loginFormContainer}>
+        {
+          state.authError ? loginError() : null
+        }
+          <form onSubmit={handleSubmit}>
+            <label>Username</label>
+            <input
+              type="text"
+              name="username"
+              value={state.username}
+              onChange={handleChange}
+            />
+            <br />
 
-          <label>Password</label>
-          <input
-            type="password"
-            name="password"
-            value={state.password}
-            onChange={handleChange}
-          />
-          <br />
+            <label>Password</label>
+            <input
+              type="password"
+              name="password"
+              value={state.password}
+              onChange={handleChange}
+            />
+            <br />
 
-          <button type="submit" value="Submit">
-            Submit
+            <button className={style.submitButton} type="submit" value="Submit">
+              Log In
           </button>
-        </form>
+          </form>
+        </div>
+        <div className={style.sideFill}/>
       </div>
     </main>
   );

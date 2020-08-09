@@ -5,7 +5,7 @@ import { useHistory } from "react-router";
 import { createExperience } from "../../../utils/apiRequests";
 import style from "./ExperienceForm.module.css";
 
-function CreateExperience(props) {
+function CreateExperience({user}) {
   const [state, setState] = useState({
     //generate id server side??
     id: "2",
@@ -13,7 +13,7 @@ function CreateExperience(props) {
     time: "",
     location: "",
     description: "",
-    userID: props.user.id,
+    userID: user.id,
   });
 
   const handleChange = (e) => {
