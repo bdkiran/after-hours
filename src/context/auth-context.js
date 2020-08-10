@@ -23,9 +23,8 @@ function AuthProvider(props) {
       if(!result){
         return
       }
-      console.log(result)
       setData({user: result})
-    }).catch( err => console.log(err))
+    }).catch( err => console.log(err));
   } 
   
   const login = async(loginCreds) => {
@@ -53,6 +52,13 @@ function AuthProvider(props) {
   );
 }
 
-const useAuth = () => React.useContext(AuthContext);
+function useAuth() {
+  console.log("use auth called")
+  const context = React.useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error(`useAuth must be used within a AuthProvider`)
+  }
+  return context
+}
 
 export { AuthProvider, useAuth };

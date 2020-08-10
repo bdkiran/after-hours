@@ -11,7 +11,8 @@ import NoMatch from "./pageComponents/NoMatch";
 
 import Navigator from "./navigationComponents/Navigator";
 
-export default function AuthenticatedApp(props) {
+function AuthenticatedApp(props) {
+
   return (
     <div className="App">
       <Navigator isAuthenticated={true} />
@@ -39,3 +40,5 @@ export default function AuthenticatedApp(props) {
     </div>
   );
 }
+
+export default AuthenticatedApp;

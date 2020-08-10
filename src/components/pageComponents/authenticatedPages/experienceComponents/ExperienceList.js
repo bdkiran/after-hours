@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom";
-
 import { getUserExperiences } from '../../../../utils/apiRequests'
-
 import style from "./ExperienceList.module.css"
+import { useAuth } from "../../../../context/auth-context"
 
 export default function ExperienceList({ userId }) {
-
     const [experiences, setExperiences] = useState([])
+
+    const history = useHistory();
+    const { logout } = useAuth();
 
     useEffect(() => {
         getUserExperiences(userId).then(result => {
@@ -15,10 +16,17 @@ export default function ExperienceList({ userId }) {
                 return
             }
             setExperiences(result.data)
-        }).catch(err => console.log(err))
-    }, [userId]);
+        }).catch(err => {
+            //Check if there is an authroization error
+            if (err.data) {
+                //If so remove the user, and route to login page
+                logout()
+                history.push("/login")
+            }
+        })
+    }, [userId, history, logout]);
 
-    const history = useHistory();
+
 
     const goToExperienceDetails = (id) => {
         let path = "/experience/" + id;
@@ -28,7 +36,7 @@ export default function ExperienceList({ userId }) {
     const generateExperienceList = () => {
         const experienceItems = experiences.map((exp) => (
             <div className={style.experienceContainer} key={exp.id}
-             onClick={() => goToExperienceDetails(exp.id)}>
+                onClick={() => goToExperienceDetails(exp.id)}>
                 <h3>{exp.name}</h3>
                 <h4>Location: {exp.location}</h4>
                 <h4>Time: {exp.time}</h4>

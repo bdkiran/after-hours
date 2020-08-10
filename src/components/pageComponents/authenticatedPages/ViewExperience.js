@@ -3,13 +3,17 @@ import React, { useEffect, useState } from "react";
 import { SpinnerLoader } from "../../navigationComponents/Loader"
 import { getExperience } from "../../../utils/apiRequests";
 import style from "./ViewExperience.module.css";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { useAuth } from "../../../context/auth-context"
 
 function ViewExperience(props) {
     const [experience, setExperience] = useState(null);
 
     //let routerLocation = useLocation();
     const experienceId = props.match.params.id
+
+    const history = useHistory();
+    const { logout } = useAuth();
 
     useEffect(() => {
         //Make a call to server to get experience information
@@ -19,8 +23,15 @@ function ViewExperience(props) {
                 return
             }
             setExperience(res.data)
+        }).catch(err => {
+            //Check if there is an authroization error
+            if(err.data){
+                //If so remove the user, and route to login page
+                logout()
+                history.push("/login")
+            }
         })
-    }, [experienceId]);
+    }, [experienceId, history, logout]);
 
     const generateExperience = () => {
         return (

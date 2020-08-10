@@ -1,14 +1,26 @@
-import React, {useEffect} from 'react';
-import {getUserDetails} from '../../../utils/apiRequests'
+import React, { useEffect } from 'react';
+import { getUserDetails } from '../../../utils/apiRequests'
+import { useHistory } from "react-router-dom";
+import { useAuth } from "../../../context/auth-context"
 
-export default function UserProfile({user}) {
+export default function UserProfile({ user }) {
+
+    const history = useHistory();
+    const { logout } = useAuth();
+
     useEffect(() => {
+        console.log("this is occuring")
         getUserDetails(user.id).then((res) => {
             console.log(res)
         }).catch(err => {
-            console.log(err)
+            //Check if there is an authroization error
+            if (err.data) {
+                //If so remove the user, and route to login page
+                logout()
+                history.push("/login")
+            }
         })
-    }, [user.id]);
+    }, [user.id, history, logout]);
 
     //use state function to call server to get user information
     return (

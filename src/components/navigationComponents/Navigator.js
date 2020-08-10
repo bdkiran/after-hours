@@ -1,24 +1,26 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import { useAuth } from "../../context/auth-context";
 import style from "./Navigator.module.css";
 
+import avatar from './avatar.png'
+
 function Navigator({ isAuthenticated }) {
   const { login, logout } = useAuth();
+  const history = useHistory();
 
   const generateAuthenticationNavigation = () => {
     if (isAuthenticated) {
       return (
         <React.Fragment>
         <li>
-          <Link to="/music">Music</Link>
+          <button onClick={logout}>Log Out</button>
         </li>
         <li>
-          <button onClick={logout}>Logout</button>
-        </li>
-        <li>
-          <button><Link to="/user">Profile</Link></button>
+          <div className={style.avatarContainer} onClick={() => history.push("user")}>
+            <img src={avatar} alt="Avatar"/>
+          </div>
         </li>
         </React.Fragment>
       );
