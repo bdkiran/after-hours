@@ -13,8 +13,9 @@
     flex-direction: column;
     padding: 0;
     margin: 0;
-    background-color: #f2f2f2;
-    padding: 10px;
+    background-color: rgba(255,255,255,0.09);
+    padding: 15px;
+    border-radius: 8px;
 }
 
 .loginFormContainer input[type="text"], input[type="password"]  {
@@ -22,7 +23,9 @@
     padding: 10px 5px;
     margin: 8px 0;
     display: inline-block;
-    border: 1px solid #ccc;
+    background-color: rgba(255,255,255,0.11);
+    color: white;
+    border: none;
     border-radius: 4px;
     box-sizing: border-box;
   }

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import SongList from "./musicComponents/SongList";
-import MusicPlayer from "./musicComponents/MusicPlayer";
+import SongList from "./SongList";
+import MusicPlayer from "./MusicPlayer";
 
 export default function Music() {
     const [selectedSong, setSelectedSong] = useState("");

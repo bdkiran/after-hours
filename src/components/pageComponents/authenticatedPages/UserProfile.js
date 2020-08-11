@@ -9,7 +9,6 @@ export default function UserProfile({ user }) {
     const { logout } = useAuth();
 
     useEffect(() => {
-        console.log("this is occuring")
         getUserDetails(user.id).then((res) => {
             console.log(res)
         }).catch(err => {

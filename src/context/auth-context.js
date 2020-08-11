@@ -53,7 +53,6 @@ function AuthProvider(props) {
 }
 
 function useAuth() {
-  console.log("use auth called")
   const context = React.useContext(AuthContext);
   if (context === undefined) {
     throw new Error(`useAuth must be used within a AuthProvider`)

@@ -14,7 +14,7 @@
   flex-direction: column;
   padding: 0;
   margin: 0;
-  background-color: #f2f2f2;
+  background-color: rgba(255,255,255,0.09);
 }
 
 .photoSection {
@@ -24,11 +24,20 @@
 }
 
 .titleSection {
-  padding: 0 10px;
+  padding: 10px 10px;
   border-bottom: 1px solid black;
 }
 
 .detailsSection {
   padding: 0 10px;
   border-bottom: 1px solid black;
+}
+
+.editExperienceButton {
+  background: #4E9CAF;
+  padding: 5px;
+  text-align: center;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
 }

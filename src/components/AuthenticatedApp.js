@@ -2,11 +2,11 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 
 import Home from "./pageComponents/authenticatedPages/Home";
-import CreateExperience from "./pageComponents/authenticatedPages/CreateExperience";
-import EditExperience from "./pageComponents/authenticatedPages/EditExperience";
-import ViewExperience from "./pageComponents/authenticatedPages/ViewExperience";
+import CreateExperience from "./pageComponents/authenticatedPages/experienceComponents/CreateExperience";
+import EditExperience from "./pageComponents/authenticatedPages/experienceComponents/EditExperience";
+import ViewExperience from "./pageComponents/authenticatedPages/experienceComponents/ViewExperience";
 import UserProfile from "./pageComponents/authenticatedPages/UserProfile"
-import Music from "./pageComponents/authenticatedPages/Music";
+import Music from "./pageComponents/authenticatedPages/musicComponents/Music";
 import NoMatch from "./pageComponents/NoMatch";
 
 import Navigator from "./navigationComponents/Navigator";

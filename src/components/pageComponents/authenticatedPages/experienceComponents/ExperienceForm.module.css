@@ -3,6 +3,7 @@
   flex-direction: row;
   text-align: left;
 }
+
 .sideFill {
   flex: 1;
 }
@@ -10,35 +11,38 @@
 .formContainer {
   flex: 6;
   flex-direction: column;
-  padding: 0;
   margin: 0;
-  background-color: #f2f2f2;
-  padding: 10px;
+  border-radius: 8px;
+  background-color: rgba(255,255,255,0.09);
+  padding: 15px;
 }
 
 .formContainer input[type="text"] {
   width: 100%;
+  color: white;
   padding: 10px 5px;
   margin: 8px 0;
   display: inline-block;
-  border: 1px solid #ccc;
   border-radius: 4px;
+  background-color: rgba(255,255,255,0.11);
   box-sizing: border-box;
+  border: none;
 }
 
 .formContainer textarea {
   width: 100%;
   padding: 10px 5px;
+  color: white;
   margin: 8px 0;
   display: inline-block;
-  border: 1px solid #ccc;
+  background-color: rgba(255,255,255,0.11);
   border-radius: 4px;
   box-sizing: border-box;
   resize: none;
+  border: none;
 }
 
 .submitButton {
-  display: inline-block;
   padding: 0.3em 1.2em;
   margin: 0 0.1em 0.1em 0;
   border: 0.16em solid rgba(255, 255, 255, 0);
@@ -51,14 +55,14 @@
   text-align: center;
   transition: all 0.2s;
   background-color: #45a049;
+  width: 50%
 }
 
 .submitButton:hover {
-  border-color: black;
+  border-color: #ccc;
 }
 
 .deleteButton {
-  display: inline-block;
   padding: 0.3em 1.2em;
   margin: 0 0.1em 0.1em 0;
   border: 0.16em solid rgba(255, 255, 255, 0);
@@ -71,10 +75,11 @@
   text-align: center;
   transition: all 0.2s;
   background-color: #f14e4e;
+  width: 50%;
 }
 
 .deleteButton:hover {
-  border-color: black;
+  border-color: #ccc;
 }
 
 /* View Experience styling components*/

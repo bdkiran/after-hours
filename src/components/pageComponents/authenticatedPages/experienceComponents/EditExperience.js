@@ -1,19 +1,23 @@
 import React, { useState } from "react";
+import { useHistory, useLocation } from "react-router";
 
-import { useHistory } from "react-router";
-
-import { createExperience } from "../../../utils/apiRequests";
+import {
+  editExperienceDetails,
+  deleteExperience,
+} from "../../../../utils/apiRequests";
 import style from "./ExperienceForm.module.css";
 
-function CreateExperience({user}) {
+function EditExperience() {
+  let routerLocation = useLocation();
+  const exp = routerLocation.state.experience;
+  let history = useHistory();
   const [state, setState] = useState({
-    //generate id server side??
-    id: "2",
+    id: exp.id,
     name: "",
     time: "",
     location: "",
     description: "",
-    userID: user.id,
+    userID: exp.userID,
   });
 
   const handleChange = (e) => {
@@ -24,21 +28,23 @@ function CreateExperience({user}) {
     }));
   };
 
-  let history = useHistory();
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    createExperience(state).then((result) => {
-      //Error check result?
-      console.log(result);
-    });
+    //error check result
+    editExperienceDetails(state).then((result) => console.log(result));
+    history.push("/");
+  };
+
+  const handleDelete = () => {
+    console.log(state.id);
+    deleteExperience(state.id).then((result) => console.log(result));
     history.push("/");
   };
 
   return (
     <main>
       <div>
-        <h1>Create a New Experience</h1>
+        <h1>Editing {exp.name}</h1>
       </div>
       <div className={style.mainContent}>
         <div className={style.sideFill} />
@@ -50,7 +56,7 @@ function CreateExperience({user}) {
               name="name"
               value={state.name}
               onChange={handleChange}
-              placeholder={"Experience Name"}
+              placeholder={exp.name}
             />
 
             <label>Time</label>
@@ -59,7 +65,7 @@ function CreateExperience({user}) {
               name="time"
               value={state.time}
               onChange={handleChange}
-              placeholder={"Experience Time"}
+              placeholder={exp.time}
             />
 
             <label>Location</label>
@@ -68,7 +74,7 @@ function CreateExperience({user}) {
               name="location"
               value={state.location}
               onChange={handleChange}
-              placeholder={"Experience Location"}
+              placeholder={exp.location}
             />
 
             <label>Description</label>
@@ -77,12 +83,14 @@ function CreateExperience({user}) {
               name="description"
               value={state.description}
               onChange={handleChange}
-              placeholder={"Add a Description to your Experience"}
+              placeholder={exp.description}
             />
+
             <button className={style.submitButton} type="submit" value="Submit">
               Submit
             </button>
           </form>
+          <button className={style.deleteButton} onClick={handleDelete}>Delete</button>
         </div>
         <div className={style.sideFill} />
       </div>
@@ -90,4 +98,4 @@ function CreateExperience({user}) {
   );
 }
 
-export default CreateExperience;
+export default EditExperience;

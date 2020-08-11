@@ -18,7 +18,7 @@ function Navigator({ isAuthenticated }) {
           <button onClick={logout}>Log Out</button>
         </li>
         <li>
-          <div className={style.avatarContainer} onClick={() => history.push("user")}>
+          <div className={style.avatarContainer} onClick={() => history.push("/user")}>
             <img src={avatar} alt="Avatar"/>
           </div>
         </li>

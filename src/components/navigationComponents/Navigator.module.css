@@ -1,5 +1,5 @@
 .AppHeader {
-  background-color: #282c34;
+  background-color: rgba(255,255,255,0.07);
   min-height: 5vh;
   display: flex;
   flex-direction: row;

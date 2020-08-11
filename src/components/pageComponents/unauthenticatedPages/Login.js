@@ -59,6 +59,7 @@ export default function Login() {
             <input
               type="text"
               name="username"
+              placeholder="Username"
               value={state.username}
               onChange={handleChange}
             />
@@ -68,6 +69,7 @@ export default function Login() {
             <input
               type="password"
               name="password"
+              placeholder="Password"
               value={state.password}
               onChange={handleChange}
             />

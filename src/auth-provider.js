@@ -47,9 +47,9 @@ async function client(endpoint, data) {
 }
 
 /* refresh route not sure if this is the appropriate place */
-function refresh() {
-  const token =  getToken();
-  clientGet("refresh", token).then(handleUserResponse);
+async function refresh() {
+  const token =  await getToken();
+  clientGet("refresh", token).then(handleUserResponse).catch(() => {});
 }
 
 /* bootstrap using token user info can get resent back to client, not sure if this is the appropriate place for this info */

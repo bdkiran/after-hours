@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 
-import { SpinnerLoader } from "../../navigationComponents/Loader"
-import { getExperience } from "../../../utils/apiRequests";
+import { SpinnerLoader } from "../../../navigationComponents/Loader"
+import { getExperience } from "../../../../utils/apiRequests";
 import style from "./ViewExperience.module.css";
 import { Link, useHistory } from "react-router-dom";
-import { useAuth } from "../../../context/auth-context"
+import { useAuth } from "../../../../context/auth-context"
 
 function ViewExperience(props) {
     const [experience, setExperience] = useState(null);
@@ -25,7 +25,7 @@ function ViewExperience(props) {
             setExperience(res.data)
         }).catch(err => {
             //Check if there is an authroization error
-            if(err.data){
+            if (err.data) {
                 //If so remove the user, and route to login page
                 logout()
                 history.push("/login")
@@ -40,15 +40,15 @@ function ViewExperience(props) {
                 </div>
                 <div className={style.titleSection}>
                     <h1>{experience.name}</h1>
-                    <button>
-                        <Link to={{
+                    <div>
+                        <Link className={style.editExperienceButton} to={{
                             pathname: "/experience/edit/" + experience.id,
                             state: { experience: experience }
                         }}
                         >
                             Edit Experience
                     </Link>
-                    </button>
+                    </div>
                 </div>
                 <div className={style.detailsSection}>
                     <h3>{experience.time}</h3>

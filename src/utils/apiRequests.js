@@ -1,6 +1,9 @@
-import { getToken } from '../auth-provider';
+import { getToken, refresh } from '../auth-provider';
 
 async function getUserDetails(userId) {
+  //Attempt to refresh the token when an api call is made.
+  await refresh()
+
   const token = await getToken()
   const bearerTokenString = 'Bearer ' + token
   const endpoint = "user/" + userId;
@@ -13,6 +16,8 @@ async function getUserDetails(userId) {
 }
 
 async function getUserExperiences(userId) {
+  //Attempt to refresh the token when an api call is made.
+  await refresh()
   const token = await getToken()
   const bearerTokenString = 'Bearer ' + token
   const endpoint = "experience/user/" + userId;
@@ -25,6 +30,8 @@ async function getUserExperiences(userId) {
 }
 
 async function getExperience(expId) {
+  //Attempt to refresh the token when an api call is made.
+  await refresh()
   const token = await getToken()
   const bearerTokenString = 'Bearer ' + token
   const endpoint = "experience/" + expId;
@@ -37,6 +44,8 @@ async function getExperience(expId) {
 }
 
 async function editExperienceDetails(dataPayload) {
+  //Attempt to refresh the token when an api call is made.
+  await refresh()
   const token = await getToken()
   const bearerTokenString = 'Bearer ' + token
   const endpoint = "experience";
@@ -50,6 +59,8 @@ async function editExperienceDetails(dataPayload) {
 }
 
 async function createExperience(dataPayload) {
+  //Attempt to refresh the token when an api call is made.
+  await refresh()
   const token = await getToken()
   const bearerTokenString = 'Bearer ' + token
   const endpoint = "experience";
@@ -63,6 +74,8 @@ async function createExperience(dataPayload) {
 }
 
 async function deleteExperience(expId) {
+  //Attempt to refresh the token when an api call is made.
+  await refresh()
   const token = await getToken()
   const bearerTokenString = 'Bearer ' + token
   const endpoint = "experience/" + expId;
