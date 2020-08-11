@@ -20,7 +20,11 @@
 .photoSection {
   width: 100%;
   height: 300px;
-  background-color: aqua;
+}
+
+#image {
+  width: 100%;
+  height: 100%;
 }
 
 .titleSection {

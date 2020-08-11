@@ -9,6 +9,7 @@ export default class MusicPlayer extends Component {
   //maybe more this to the apiRequest class
   async componentDidUpdate() {
     console.log(this.props.directory);
+    //this needs to be replaced with environment variable
     const beginingUrl = "http://10.34.1.30:8080/songs/";
     const songLoc = this.props.directory + "/outputlist.m3u8";
     var hlsUrl = beginingUrl + songLoc;
