@@ -38,8 +38,7 @@ async function submitImage(imageFile) {
         },
         body: imageFile,
     }
-    apiClient(endpoint, config)
-
+    return apiClient(endpoint, config)
 }
 
 //do we want a whole seperate client just becuase the responses are different??
