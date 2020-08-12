@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { SpinnerLoader } from "../../../navigationComponents/Loader"
 import { getExperience } from "../../../../utils/apiRequests";
-import { getImage } from "../../../../utils/mediaRequest";
+import { fetchImage } from "../../../../utils/mediaRequest";
 import style from "./ViewExperience.module.css";
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../../../../context/auth-context"
@@ -28,7 +28,7 @@ function ViewExperience(props) {
             setExperience(res.data)
             return res.data.pictureUrl
         }).then( url => {
-            return getImage(url)
+            return fetchImage(url)
         }).then(returnBlob => {
             //console.log(returnBlob)
             let objectUrl = URL.createObjectURL(returnBlob);
@@ -41,7 +41,6 @@ function ViewExperience(props) {
                 history.push("/login")
             }
         })
-        console.log("First Request finished")
     }, [experienceId, history, logout]);
 
     const generateExperience = () => {
